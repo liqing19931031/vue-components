@@ -1,0 +1,10 @@
+.border-style(@border-color;@border-width;) {
+	border: @border-width solid @border-color;
+}
+
+.border-color--base{
+	.border-style(@gray-lighter;1px)
+}
+.border-color--lighter{
+	.border-style(@gray-light;1px)
+}

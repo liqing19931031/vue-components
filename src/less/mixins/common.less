@@ -1,0 +1,31 @@
+.transition(@transition) {
+  -webkit-transition: @transition;
+       -o-transition: @transition;
+          transition: @transition;
+}
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.box-shadow(@shadow) {
+  	-webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
+   	box-shadow: @shadow;
+}
+
+.tab-focus() {
+  	outline: 5px auto -webkit-focus-ring-color;
+  	outline-offset: -2px;
+}
+.user-select(@select) {
+  -webkit-user-select: @select;
+     -moz-user-select: @select;
+      -ms-user-select: @select; // IE10+
+          user-select: @select;
+}
