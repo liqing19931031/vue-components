@@ -26,7 +26,7 @@
                         <span class="arrow" @click="subHour">&gt;</span>
                     </div>
                     <div class="minute" v-if='pickType === "min"'>
-                        <!-- todo -->
+                        <!-- todo min -->
                     </div>
                     <div class="days">
                         <span v-for="(item, index) in renderData" :class="{ 
