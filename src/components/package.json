@@ -1,0 +1,22 @@
+{
+  "name": "pan-vue-components",
+  "version": "1.0.0",
+  "description": "vu-component",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liqing19931031/vue-components.git"
+  },
+  "keywords": [
+    "xiaolu921014"
+  ],
+  "author": "arron",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liqing19931031/vue-components/issues"
+  },
+  "homepage": "https://github.com/liqing19931031/vue-components#readme"
+}

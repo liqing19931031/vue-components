@@ -18,12 +18,15 @@
                             {{item}}
                         </span>
                     </div>
-                    <div class="hour">
+                    <div class="hour" v-if='pickType !== "day"'>
                         <span class="arrow" @click="addHour">&lt;</span>
                         <span>
-                            {{this.hour}}:00
+                            {{this.hour < 10 ? '0' + this.hour : this.hour}}:00
                         </span>
                         <span class="arrow" @click="subHour">&gt;</span>
+                    </div>
+                    <div class="minute" v-if='pickType === "min"'>
+                        <!-- todo -->
                     </div>
                     <div class="days">
                         <span v-for="(item, index) in renderData" :class="{ 
@@ -44,6 +47,10 @@
 export default {
   name: 'calendar-input',
   props: {
+    pickType: { // 选择模式 day 仅能选天 hour 选小时 min选分钟
+        type: String,
+        default: 'day'
+    },
     timeName: {
         type: String
     },
@@ -151,61 +158,60 @@ export default {
       }
     },
     changeSelectDay (index) {
-      if (this.unselectArr.includes(index)) return false
-      this.selectDay = index - this.firstDayInWeek + 1
+        if (this.unselectArr.includes(index)) return false
+        this.selectDay = index - this.firstDayInWeek + 1
     }
   },
   computed: {
     trueSelectYear () {
-      if (this.selectYear < this.limit.minYear) return this.limit.minYear
-      if (this.selectYear > this.limit.maxYear) return this.limit.maxYear
-      return this.selectYear
+        if (this.selectYear < this.limit.minYear) return this.limit.minYear
+        if (this.selectYear > this.limit.maxYear) return this.limit.maxYear
+        return this.selectYear
     },
     trueSelectMonth () {
-      if (this.selectYear === this.limit.minYear && this.selectMonth < this.limit.minMonth) return this.limit.minMonth
-      if (this.selectYear === this.limit.maxYear && this.selectMonth > this.limit.maxMonth) return this.limit.maxMonth
-      return this.selectMonth
+        if (this.selectYear === this.limit.minYear && this.selectMonth < this.limit.minMonth) return this.limit.minMonth
+        if (this.selectYear === this.limit.maxYear && this.selectMonth > this.limit.maxMonth) return this.limit.maxMonth
+        return this.selectMonth
     },
     trueSelectDay () {
-      if (this.selectYear === this.limit.minYear && this.selectMonth === this.limit.minMonth && this.selectDay < this.limit.minDay) return this.limit.minDay
-      if (this.selectYear === this.limit.maxYear && this.selectMonth === this.limit.maxMonth && this.selectDay > this.limit.maxDay) return this.limit.maxDay
-      if (this.selectDay > this.dayCount) return this.dayCount
-      return this.selectDay
+        if (this.selectYear === this.limit.minYear && this.selectMonth === this.limit.minMonth && this.selectDay < this.limit.minDay) return this.limit.minDay
+        if (this.selectYear === this.limit.maxYear && this.selectMonth === this.limit.maxMonth && this.selectDay > this.limit.maxDay) return this.limit.maxDay
+        if (this.selectDay > this.dayCount) return this.dayCount
+        return this.selectDay
     },
     selectValue () {
-      return `${this.trueSelectYear}-${this.trueSelectMonth}-${this.trueSelectDay} ${this.hour}:00`
+        return `${this.trueSelectYear}-${this.trueSelectMonth < 10 ? '0' + this.trueSelectMonth : this.trueSelectMonth}-${this.trueSelectDay} ${this.pickType !== 'day' ? (this.hour < 10 ? '0' + this.hour + ':00' : this.hour + ':00') : ''}`
     },
     firstDayInWeek () {
-      return new Date(this.trueSelectYear, this.trueSelectMonth - 1, 1).getDay()
+        return new Date(this.trueSelectYear, this.trueSelectMonth - 1, 1).getDay()
     },
     dayCount () {
-      return new Date(this.trueSelectYear, this.trueSelectMonth, 0).getDate()
+        return new Date(this.trueSelectYear, this.trueSelectMonth, 0).getDate()
     },
     lastMonthDay () {
-      let lastNum = this.firstDayInWeek
-      let lastDays = []
-      if (lastNum === 0) return lastDays
-
-      let i = 0
-      let lastDayNum = new Date(this.trueSelectYear, this.trueSelectMonth - 1, 0).getDate()
-      for (; i < lastNum; i++) {
-        lastDays.unshift(lastDayNum)
-        lastDayNum--
-      }
-      return lastDays
+        let lastNum = this.firstDayInWeek
+        let lastDays = []
+        if (lastNum === 0) return lastDays
+        let i = 0
+        let lastDayNum = new Date(this.trueSelectYear, this.trueSelectMonth - 1, 0).getDate()
+        for (; i < lastNum; i++) {
+            lastDays.unshift(lastDayNum)
+            lastDayNum--
+        }
+        return lastDays
     },
     nextMonthDay () {
-      let num = 42 - this.firstDayInWeek - this.dayCount
-      let nextDays = []
-      if (num === 0) return nextDays
-      let i = 1
-      for (; i <= num; i++) {
-        nextDays.push(i)
-      }
-      return nextDays
+        let num = 42 - this.firstDayInWeek - this.dayCount
+        let nextDays = []
+        if (num === 0) return nextDays
+        let i = 1
+        for (; i <= num; i++) {
+            nextDays.push(i)
+        }
+        return nextDays
     },
     renderData () {
-      let nowDays = []
+        let nowDays = []
       let i = 1
       for (; i <= this.dayCount; i++) {
         nowDays.push(i)

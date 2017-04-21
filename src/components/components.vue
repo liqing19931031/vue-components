@@ -17,7 +17,8 @@
 			<div class="title">
 				时间选择器组件
 			</div>
-			<date-picker :subData='this.subData' :timeName='"start"' :showCalendar='this.DATEPICK'></date-picker>
+			<date-picker :subData='this.subData' :timeName='"start"' :showCalendar='this.DATEPICK'></date-picker>（选择天）
+			<date-picker :subData='this.subData' :timeName='"start"' :showCalendar='this.DATEPICK' :pickType='"hour"'></date-picker>（至小时）
 		</div>
 		<div class="component clearfix">
 			<div class="title">
@@ -63,8 +64,10 @@ export default {
 	},
 	mounted () {
 	    this.getData('get', '', {a: 1}, (res) => {
+	    	console.log(res)
 	    })
 	    this.getData('get', 'users', {a: 1}, (res) => {
+	    	console.log(res.data.result)
 	    })
   	},
 	components: {
