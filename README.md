@@ -18,3 +18,4 @@ npm run dev
 # vue的一些简单组件（公司用）
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 时间选择器
