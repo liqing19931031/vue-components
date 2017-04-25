@@ -19,3 +19,6 @@ npm run dev
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 ## 时间选择器
+## 分页组件
+## 图片上传
+## 模态框
