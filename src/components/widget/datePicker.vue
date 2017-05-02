@@ -29,8 +29,8 @@
                         <!-- todo -->
                     </div>
                     <div class="days">
-                        <span v-for="(item, index) in renderData" :class="{ 
-                            weekend: index % 7 === 0 || index % 7 === 6, 
+                        <span v-for="(item, index) in renderData" :class="{
+                            weekend: index % 7 === 0 || index % 7 === 6,
                             unselect: unselectArr.includes(index),
                             select: index === firstDayInWeek + trueSelectDay - 1
                           }" @click="changeSelectDay(index)" ref='days'>
@@ -72,7 +72,7 @@ export default {
                 minYear: 1900,
                 minMonth: 1,
                 minDay: 1,
-                maxYear: new Date().getFullYear(),
+                maxYear: new Date().getFullYear(), // 限制不能选择今天之后的时间
                 maxMonth: new Date().getMonth() + 1,
                 maxDay: new Date().getDate()
             }

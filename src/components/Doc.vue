@@ -98,7 +98,9 @@ export default {
             'BBS',
             'order',
             'message',
-            'download'
+            'download',
+            'turnleft',
+            'turnright'
         ],
         TEXT: [
             // 'base',
@@ -172,24 +174,11 @@ export default {
         flex-wrap: nowrap;
     }
     .oneline{
-        display: flex; 
+        display: flex;
         justify-content: space-between;
     }
     .oneline + .oneline{
         margin-top: 30px;
     }
-    /*.rect-line{
-        margin: 20px 0;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        .text{
-            text-align: center;
-        }
-        .rect{
-            width: 100px;
-            height: 100px;
-        }
-    }*/
 }
 </style>

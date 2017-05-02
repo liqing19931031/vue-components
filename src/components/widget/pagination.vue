@@ -2,7 +2,7 @@
 	<nav aria-label="Page navigation" class="clearfix">
 		 <ul class="pagination pull-left">
 		    <li>
-		      <a aria-label="Previous" @click='changePage(currentPage - 1)'>
+		      <a aria-label="Previous" @click='changePage(currentPage - 1)' :class='this.currentPage === 1 ? "disabled" : ""'>
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		    </li>
@@ -12,7 +12,7 @@
 		    	</a>
 		    </li>
 		    <li>
-		      <a aria-label="Next" @click='changePage(currentPage + 1)'>
+		      <a aria-label="Next" @click='changePage(currentPage + 1)' :class='this.currentPage === this.totalPage ? "disabled" : ""'>
 		        <span aria-hidden="true">&raquo;</span>
 		      </a>
 		    </li>
@@ -114,6 +114,15 @@ ul{
 					color: @brand-info;
 					border:1px solid @brand-info;
 					background-color: transparent;
+				}
+			}
+			a{
+				&.disabled{
+					color: #999;
+					cursor: no-drop;
+					&:hover{
+						border-color: transparent;
+					}
 				}
 			}
 		}
